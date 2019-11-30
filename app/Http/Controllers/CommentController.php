@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -35,14 +36,19 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $post = Post::findOrFail($request->id);
- 
-        Comment::create([
-            'idpost' => $post->id,
-            'iduser' => Auth::id(),
-            'content' => $request->content
-        ]);
-        return redirect()->route('posts.show', $post->id);
+        // $request->validate([
+        //     'content'=>'required',
+        // ]);
+        
+        $input = $request->all();
+        $input['iduser'] = Auth::id();
+        // $input['content'] = $input->content;
+        
+        Comment::create($input);
+        
+        // var_dump($request);
+        // exit;
+        return back();
     }
 
     /**

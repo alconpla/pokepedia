@@ -21,7 +21,7 @@
     <hr>
     <div class="row">
         <div class="col-md-6">
-            {{-- @foreach($comment as $com) --}
+            @foreach($comments as $com)
             <div class="card mb-2">
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
@@ -30,14 +30,14 @@
                 </blockquote>
               </div>
             </div>
-            {{-- @endforeach --}}
+           @endforeach
         </div>
         <div class="col-md-6">
-            <h3>Comment</h3>
-            <form action="" method="POST">
+            <form action="{{ route('comment.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <textarea class="form-control" id="comment" name="comment" placeholder="Comment anything..."></textarea>
+                    <textarea class="form-control" id="content" name="content" placeholder="Comment anything..."></textarea>
+                    <input type="hidden" name="idpost" value="{{ $post->id }}">
                 </div>
                 <input type="submit" class="btn btn-primary" value="Comment">
             </form>

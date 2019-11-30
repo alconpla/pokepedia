@@ -25,16 +25,17 @@ class PokemonController extends Controller
             'name' => 'required|max:70',
             'weight' => 'required|max:50',
             'height' => 'required|max:50',
-            'image' => 'required|max:250'
+            'image' => ''
         ]);
         
-        if($request->hasFile('image')) {
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
             $file = $request->file('image');
-            $target = '../../uploads/';
+            $target = '../../../uploads/';
             $name = $file->getClientOriginalName();
             $file->move($target, $name);
         }
-        
+        // var_dump($request);
+        // exit;
         Pokemon::create($request->all());
         return redirect(route('pokemon.index'));
     }
