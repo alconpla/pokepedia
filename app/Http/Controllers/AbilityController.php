@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ability;
+use Auth;
 use Illuminate\Http\Request;
 
 class AbilityController extends Controller
@@ -24,7 +25,7 @@ class AbilityController extends Controller
      */
     public function create()
     {
-        //
+        return view('ability.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class AbilityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::check()) {
+            $request->validate([
+                'ability'=>'required'
+            ]);
+            
+            Ability::create($request->all());
+            return redirect(route('pokemon.index'));
+        }
+        else {
+            return redirect(route('comment.create'));
+        }
     }
 
     /**

@@ -30,6 +30,7 @@
 			    <h2>Pokedex</h2>
 			       <div>
 			           <a href="{{ action('PokemonController@create') }}" class="btn btn-success btn-sm">Add pokemon</a>
+			           <a href="{{ action('AbilityController@create') }}" class="btn btn-success btn-sm">Add ability</a>
 			       </div>
 			</div>
 			

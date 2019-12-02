@@ -24,7 +24,7 @@ class AbilityPokemonController extends Controller
      */
     public function create()
     {
-        //
+        // return view('comment.create');
     }
 
     /**
@@ -35,7 +35,9 @@ class AbilityPokemonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        AbilityPokemon::create($request->all());
+        return back();
+   
     }
 
     /**

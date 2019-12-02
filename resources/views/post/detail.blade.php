@@ -26,7 +26,8 @@
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
                   <p>{{ $com->content }}</p>
-                  <footer class="blockquote-footer">{{ $com->user->name }}</footer>
+                  <footer class="blockquote-footer">{{ $com->user->name }}
+                  <small class="text-muted text-right float-right">commented {{ $com->created_at->diffInDays() }} days ago</small></footer>
                 </blockquote>
               </div>
             </div>

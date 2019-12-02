@@ -14,8 +14,18 @@ class CreateAbilityPokemonTable extends Migration
     public function up()
     {
         Schema::create('ability_pokemon', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
+            
             $table->bigIncrements('id');
+            $table->bigInteger('idability')->unsigned();
+            $table->bigInteger('idpokemon')->unsigned();
             $table->timestamps();
+            
+            $table->foreign('idability')->references('id')->on('abilities');
+            $table->foreign('idpokemon')->references('id')->on('pokemon');
+            $table->unique(['idability', 'idpokemon']);
         });
     }
 

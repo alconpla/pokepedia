@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Pokemon;
+use App\Ability;
+use App\AbilityPokemon;
 use Illuminate\Http\Request;
 
 class PokemonController extends Controller
@@ -42,7 +44,9 @@ class PokemonController extends Controller
 
     public function show($id)
     {
-        return view('pokemon.detail', ['pokemon' => Pokemon::findOrFail($id)]);
+        $abilities = Ability::all();
+        $pokemonabilities = AbilityPokemon::where('idpokemon', $id)->get();
+        return view('pokemon.detail', ['pokemon' => Pokemon::findOrFail($id), 'abilities' => $abilities, 'pokemonabilities' => $pokemonabilities]);
     }
 
     public function edit(Pokemon $pokemon)

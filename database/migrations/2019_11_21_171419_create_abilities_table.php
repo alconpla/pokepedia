@@ -15,6 +15,7 @@ class CreateAbilitiesTable extends Migration
     {
         Schema::create('abilities', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('ability', 100)->unique();
             $table->timestamps();
         });
     }
